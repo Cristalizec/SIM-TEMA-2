@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane style="-fx-background-color: #0F172A;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.agroflysimulator.controller.AgroController">
+    <left>
+        <VBox prefWidth="300.0" spacing="15.0" style="-fx-background-color: #1E293B; -fx-padding: 20;">
+            <children>
+                <Label text="🌽 AgroFly Sim" textFill="#22C55E">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Label>
+                <Label text="Simulador de Fumigación Agrícola Multi-Dron" textFill="#94A3B8">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Label>
+                <Separator style="-fx-opacity: 0.2;" />
+
+                <!-- Selección de Drones (1 a 4) -->
+                <Label text="Cantidad de Drones:" textFill="WHITE" />
+                <ComboBox fx:id="cbNumDrones" prefWidth="260.0" style="-fx-background-color: #334155; -fx-mark-color: white;" />
+
+                <!-- Configuración del Viento -->
+                <Label text="Velocidad del Viento (km/h):" textFill="WHITE" />
+                <HBox spacing="10.0">
+                    <Slider fx:id="sliderVientoVel" max="40.0" min="0.0" value="10.0" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblVientoVel" text="10 km/h" textFill="#38BDF8" />
+                </HBox>
+
+                <Label text="Dirección del Viento (°):" textFill="WHITE" />
+                <HBox spacing="10.0">
+                    <Slider fx:id="sliderVientoDir" max="360.0" min="0.0" value="45.0" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblVientoDir" text="45°" textFill="#38BDF8" />
+                </HBox>
+
+                <Separator style="-fx-opacity: 0.2;" />
+
+                <!-- Métricas en tiempo real -->
+                <Label text="ESTADO DE MISIÓN" textFill="#22C55E">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+
+                <Label text="Cobertura del Campo:" textFill="WHITE" />
+                <ProgressBar fx:id="progressCobertura" prefWidth="260.0" progress="0.0" style="-fx-accent: #22C55E;" />
+                <Label fx:id="lblCobertura" text="0.0%" textFill="#22C55E">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+
+                <Label text="Promedio Batería Drones:" textFill="WHITE" />
+                <ProgressBar fx:id="progressBateria" prefWidth="260.0" progress="1.0" style="-fx-accent: #38BDF8;" />
+                <Label fx:id="lblBateria" text="100.0%" textFill="#38BDF8" />
+
+                <Label fx:id="lblTiempo" text="Tiempo: 00:00" textFill="#CBD5E1" />
+
+                <Separator style="-fx-opacity: 0.2;" />
+
+                <!-- Botones de Acción -->
+                <Button fx:id="btnIniciar" maxWidth="1.7976931348623157E308" onAction="#iniciarSimulacion" style="-fx-background-color: #22C55E; -fx-text-fill: #0F172A; -fx-font-weight: bold; -fx-padding: 10;" text="🚀 Iniciar Fumigación" />
+                <Button fx:id="btnReiniciar" maxWidth="1.7976931348623157E308" onAction="#reiniciarSimulacion" style="-fx-background-color: #334155; -fx-text-fill: white; -fx-padding: 8;" text="🔄 Reiniciar Campo" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox alignment="CENTER" style="-fx-padding: 15;">
+            <children>
+                <Canvas fx:id="canvasCampo" height="650.0" width="850.0" />
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane style="-fx-background-color: #030712; -fx-padding: 12;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.meteorsimulator.controller.MeteorController">
+
+    <!-- HEADER RESTRICCIÓN EXACTA -->
+    <top>
+        <VBox alignment="CENTER" spacing="2" style="-fx-border-color: #0ea5e9; -fx-border-width: 0 0 2 0; -fx-padding: 0 0 8 0;">
+            <Label text="⚡ METEOR IMPACT SIMULATOR ⚡" textFill="#0ea5e9">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            </Label>
+            <Label text="SISTEMA DE MONITOREO ESTOCÁSTICO MONTE CARLO &amp; POSTGRESQL DATASET" textFill="#94a3b8">
+                <font>
+                    <Font name="Monospaced Bold" size="10.0" />
+                </font>
+            </Label>
+        </VBox>
+    </top>
+
+    <!-- PANEL LATERAL DE CONTROLES -->
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #0f172a; -fx-padding: 14; -fx-border-color: #334155; -fx-border-radius: 8; -fx-background-radius: 8; -fx-pref-width: 240;">
+            <BorderPane.margin>
+                <Insets top="8" right="12" bottom="0" left="0" />
+            </BorderPane.margin>
+            <children>
+                <Label text="PARÁMETROS DE IMPACTO" textFill="#f87171">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+
+                <!-- CAMPO: POBLACIÓN -->
+                <VBox spacing="2">
+                    <Label text="Habitantes Totales:" textFill="#cbd5e1">
+                        <font><Font size="11.0" /></font>
+                    </Label>
+                    <TextField fx:id="popInput" promptText="Ej: 150" style="-fx-background-color: #1e293b; -fx-text-fill: #38bdf8; -fx-border-color: #475569; -fx-border-radius: 4;" text="150" />
+                </VBox>
+
+                <!-- CAMPO: TAMAÑO -->
+                <VBox spacing="2">
+                    <Label text="Diámetro del Cráter (px):" textFill="#cbd5e1">
+                        <font><Font size="11.0" /></font>
+                    </Label>
+                    <TextField fx:id="sizeInput" promptText="Ej: 45" style="-fx-background-color: #1e293b; -fx-text-fill: #38bdf8; -fx-border-color: #475569; -fx-border-radius: 4;" text="45" />
+                </VBox>
+
+                <!-- CAMPO: VELOCIDAD -->
+                <VBox spacing="2">
+                    <Label text="Velocidad de Caída:" textFill="#cbd5e1">
+                        <font><Font size="11.0" /></font>
+                    </Label>
+                    <TextField fx:id="speedInput" promptText="Ej: 320" style="-fx-background-color: #1e293b; -fx-text-fill: #38bdf8; -fx-border-color: #475569; -fx-border-radius: 4;" text="320" />
+                </VBox>
+
+                <!-- BOTONES DE ACCIÓN -->
+                <VBox spacing="8" style="-fx-padding: 6 0 0 0;">
+                    <Button maxWidth="Infinity" onAction="#onStartSimulation" style="-fx-background-color: #0284c7; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8; -fx-cursor: hand; -fx-background-radius: 6;" text="🚀 INICIAR SIMULACIÓN" />
+                    <Button maxWidth="Infinity" onAction="#onTogglePause" style="-fx-background-color: #334155; -fx-text-fill: #f1f5f9; -fx-font-weight: bold; -fx-padding: 7; -fx-cursor: hand; -fx-background-radius: 6;" text="⏸ PAUSAR / REANUDAR" />
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- ÁREA CENTRAL CON CANVAS Y CONSOLA PERFECTAMENTE ENCUADRADOS -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="8">
+            <BorderPane.margin>
+                <Insets top="8" right="0" bottom="0" left="0" />
+            </BorderPane.margin>
+            <children>
+                <!-- CANVAS AJUSTADO A 680x420 -->
+                <VBox alignment="CENTER" style="-fx-border-color: #0284c7; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-color: #000000; -fx-background-radius: 8;">
+                    <Canvas fx:id="simCanvas" height="420.0" width="680.0" />
+                </VBox>
+
+                <!-- BARRA DE ESTADO TIPO CONSOLA -->
+                <HBox alignment="CENTER_LEFT" maxWidth="684.0" style="-fx-background-color: #0f172a; -fx-padding: 6 12; -fx-border-color: #334155; -fx-border-radius: 6; -fx-background-radius: 6;">
+                    <children>
+                        <Label fx:id="statusLabel" text="Sistema listo. Ingresa parámetros y presiona INICIAR." textFill="#a7f3d0">
+                            <font>
+                                <Font name="Monospaced Bold" size="11.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

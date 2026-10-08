@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane style="-fx-background-color: #0F172A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trafficsmartsimulator.controller.TrafficController">
+    <left>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #1E293B; -fx-background-color: #1E293B; -fx-border-color: #1E293B;" vbarPolicy="AS_NEEDED">
+            <content>
+                <VBox prefWidth="320.0" spacing="12.0" style="-fx-background-color: #1E293B; -fx-padding: 15;">
+                    <children>
+                        <Label text="🚦 SmartTraffic Sim" textFill="#38BDF8">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="Control de Cruce Urbano Inteligente" textFill="#94A3B8">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                        <Separator style="-fx-opacity: 0.2;" />
+
+                        <!-- Configuración del Tiempo del Semáforo -->
+                        <Label text="Modo de Semáforo:" textFill="WHITE" />
+                        <ComboBox fx:id="cbModo" prefWidth="280.0" style="-fx-background-color: #334155; -fx-mark-color: white;" />
+
+                        <Label text="Tiempo Verde por Vía (Segundos):" textFill="WHITE" />
+                        <Spinner fx:id="spnTiempoSemaforo" editable="true" prefWidth="280.0" style="-fx-background-color: #334155;" />
+
+                        <!-- Contador Regresivo -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #0F172A; -fx-padding: 8; -fx-background-radius: 6;">
+                            <children>
+                                <Label text="⏱️ Cambio en:" textFill="#CBD5E1" />
+                                <Label fx:id="lblTiempoRestanteSemaforo" text="10.0 s" textFill="#38BDF8">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+
+                        <Separator style="-fx-opacity: 0.2;" />
+
+                        <!-- Métricas de Operación -->
+                        <Label text="MÉTRICAS DE TRÁFICO" textFill="#38BDF8">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+
+                        <Label text="Congestión en Cruce:" textFill="WHITE" />
+                        <ProgressBar fx:id="progressCongestion" prefWidth="280.0" progress="0.0" style="-fx-accent: #EF4444;" />
+                        <Label fx:id="lblCongestion" text="0.0%" textFill="#EF4444">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+
+                        <Label fx:id="lblVehiculos" text="Vehículos Procesados: 0" textFill="WHITE" />
+                        <Label fx:id="lblAmbulancias" text="Ambulancias Priorizadas: 0" textFill="#38BDF8" />
+                        <Label fx:id="lblEspera" text="Espera Promedio: 0.0s" textFill="#EAB308" />
+                        <Label fx:id="lblFlujo" text="Flujo: 0 veh/min" textFill="#22C55E">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblTiempo" text="Tiempo Transcurrido: 00:00" textFill="#CBD5E1" />
+
+                        <Separator style="-fx-opacity: 0.2;" />
+
+                        <!-- Panel de Botones Garantizados -->
+                        <VBox spacing="8.0">
+                            <children>
+                                <Button fx:id="btnGenerarAmbulancia" maxWidth="1.7976931348623157E308" onAction="#generarAmbulancia" style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10;" text="🚑 Enviar Ambulancia" />
+                                <Button fx:id="btnIniciar" maxWidth="1.7976931348623157E308" onAction="#iniciarSimulacion" style="-fx-background-color: #38BDF8; -fx-text-fill: #0F172A; -fx-font-weight: bold; -fx-padding: 10;" text="▶️ Iniciar Simulación" />
+                                <Button fx:id="btnReiniciar" maxWidth="1.7976931348623157E308" onAction="#reiniciarSimulacion" style="-fx-background-color: #334155; -fx-text-fill: white; -fx-padding: 8;" text="🔄 Reiniciar Cruce" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </left>
+    <center>
+        <VBox alignment="CENTER" style="-fx-padding: 15;">
+            <children>
+                <Canvas fx:id="canvasTrafico" height="650.0" width="850.0" />
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
